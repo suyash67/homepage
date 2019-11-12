@@ -10,6 +10,8 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure, .highlight { mar
 /** Line-breaks */
 div.line-break-small { line-height: 100%; }
 
+div.line-break-normal { line-height: 10%; }
+
 div.line-break-large { line-height: 200%; }
 
 /** `main` element */
