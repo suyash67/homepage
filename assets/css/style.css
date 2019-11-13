@@ -15,7 +15,7 @@ div.line-break-normal { line-height: 10%; }
 div.line-break-large { line-height: 200%; }
 
 /** `main` element */
-main { font-family: "Montserrat", sans-serif; display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */ }
+p, main { font-family: "Montserrat", sans-serif; display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */ }
 
 /** Images */
 img { max-width: 100%; vertical-align: middle; }
