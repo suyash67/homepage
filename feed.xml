@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/homepage/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/homepage/" rel="alternate" type="text/html" /><updated>2020-07-12T03:04:35+05:30</updated><id>http://localhost:4000/homepage/feed.xml</id><title type="html">Suyash Bagad</title><subtitle>© Suyash Bagad. Powered by Jekyll.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/homepage/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/homepage/" rel="alternate" type="text/html" /><updated>2020-07-12T20:13:45+05:30</updated><id>http://localhost:4000/homepage/feed.xml</id><title type="html">Suyash Bagad</title><subtitle>© Suyash Bagad. Powered by Jekyll.
 </subtitle><author><name>Personal Webpage</name></author><entry><title type="html">Comparing Bulletproofs+ and Bulletproofs - Part I</title><link href="http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part1.html" rel="alternate" type="text/html" title="Comparing Bulletproofs+ and Bulletproofs - Part I" /><published>2020-07-03T00:00:00+05:30</published><updated>2020-07-03T00:00:00+05:30</updated><id>http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part1</id><content type="html" xml:base="http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part1.html">{% katexmm %}
 [Bulletproofs+](https://eprint.iacr.org/2020/735.pdf) is a recently proposed range proof which is similar in spirit to [Bulletproofs](https://eprint.iacr.org/2017/1066.pdf). Both of these range proof protocols enable proof sizes logarithmic in the number of bits of the range using a recursive inner product protocol. Bulletproofs relies on the improved inner product protocol [^1] while Bulletproofs+ uses a weighted inner product protocol [^2].
 
@@ -293,7 +293,8 @@ The prover and verifier’s computation is &lt;span class=&quot;katex&quot;&gt;&
 However, verification can significantly boosted by using a single multi-exponentiation check (read &lt;a href=&quot;https://github.com/KZen-networks/bulletproofs/pull/20#discussion_r436681850&quot;&gt;this&lt;/a&gt; to briefly understand how multi-exponentiation works). 
 Batching proofs together further improves generation and verification times.
 In most cryptocurrency systems, range proofs are required for proving that amounts hidden in Pederson commitments are 64-bit non-negative integers.
-Thus, we compare proof sizes &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and running times for &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;64&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;n=64&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.64444em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;4&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; and different batching configurations as shown in the following table.&lt;/p&gt;
+Thus, we compare proof sizes &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and running times for &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;64&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;n=64&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.64444em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;4&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; and different batching configurations as shown in the following table.
+All simulations were performed on an Intel® Core™ i7-5500U CPU running at 2.40GHz.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;&lt;em&gt;Performance comparison of Bulletproofs and Bulletproofs+&lt;/em&gt;&lt;/p&gt;
 &lt;table border=&quot;1&quot;&gt;
@@ -302,24 +303,24 @@ Thus, we compare proof sizes &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;
 &lt;tr&gt;&lt;th&gt;BP&lt;th&gt;BP+&lt;th&gt;BP&lt;th&gt;BP+&lt;th&gt;BP&lt;th&gt;BP+
 &lt;tr&gt;&lt;th&gt;1
 &lt;td&gt;688&lt;td&gt;591
-&lt;td&gt;82.0&lt;td&gt;71.9
-&lt;td&gt;32.7&lt;td&gt;25.9
+&lt;td&gt;75.0&lt;td&gt;59.3 &amp;nbsp;&amp;nbsp;&lt;small style=&quot;color:green&quot;&gt;&lt;i class=&quot;fas fa-long-arrow-alt-down&quot; style=&quot;color:green&quot;&gt;&lt;/i&gt;20.9%&lt;/small&gt;
+&lt;td&gt;30.8&lt;td&gt;25.3 &amp;nbsp;&amp;nbsp;&lt;small style=&quot;color:green&quot;&gt;&lt;i class=&quot;fas fa-long-arrow-alt-down&quot; style=&quot;color:green&quot;&gt;&lt;/i&gt;17.8%&lt;/small&gt;
 &lt;tr&gt;&lt;th&gt;4
 &lt;td&gt;820&lt;td&gt;723
-&lt;td&gt;302.9&lt;td&gt;241.8
-&lt;td&gt;119.5&lt;td&gt;99.4
+&lt;td&gt;295.1&lt;td&gt;234.1 &amp;nbsp;&amp;nbsp;&lt;small style=&quot;color:green&quot;&gt;&lt;i class=&quot;fas fa-long-arrow-alt-down&quot; style=&quot;color:green&quot;&gt;&lt;/i&gt;20.7%&lt;/small&gt;
+&lt;td&gt;116.1&lt;td&gt;97.5 &amp;nbsp;&amp;nbsp;&lt;small style=&quot;color:green&quot;&gt;&lt;i class=&quot;fas fa-long-arrow-alt-down&quot; style=&quot;color:green&quot;&gt;&lt;/i&gt;16%&lt;/small&gt;
 &lt;tr&gt;&lt;th&gt;8
 &lt;td&gt;886&lt;td&gt;789
-&lt;td&gt;663.1&lt;td&gt;484.0
-&lt;td&gt;253.1&lt;td&gt;201.7
+&lt;td&gt;590.9&lt;td&gt;473.5 &amp;nbsp;&amp;nbsp;&lt;small style=&quot;color:green&quot;&gt;&lt;i class=&quot;fas fa-long-arrow-alt-down&quot; style=&quot;color:green&quot;&gt;&lt;/i&gt;19.8%&lt;/small&gt;
+&lt;td&gt;229.1&lt;td&gt;197.5 &amp;nbsp;&amp;nbsp;&lt;small style=&quot;color:green&quot;&gt;&lt;i class=&quot;fas fa-long-arrow-alt-down&quot; style=&quot;color:green&quot;&gt;&lt;/i&gt;13.8%&lt;/small&gt;
 &lt;tr&gt;&lt;th&gt;16
 &lt;td&gt;952&lt;td&gt;855
-&lt;td&gt;1466.9&lt;td&gt;1242.9
-&lt;td&gt;517.0&lt;td&gt;473.5
+&lt;td&gt;1187.4&lt;td&gt;978.0 &amp;nbsp;&amp;nbsp;&lt;small style=&quot;color:green&quot;&gt;&lt;i class=&quot;fas fa-long-arrow-alt-down&quot; style=&quot;color:green&quot;&gt;&lt;/i&gt;17.6%&lt;/small&gt;
+&lt;td&gt;469.4&lt;td&gt;406.3 &amp;nbsp;&amp;nbsp;&lt;small style=&quot;color:green&quot;&gt;&lt;i class=&quot;fas fa-long-arrow-alt-down&quot; style=&quot;color:green&quot;&gt;&lt;/i&gt;13.5%&lt;/small&gt;
 &lt;tr&gt;&lt;th&gt;32
 &lt;td&gt;1018&lt;td&gt;921
-&lt;td&gt;2416.1&lt;td&gt;2601.9
-&lt;td&gt;934.5&lt;td&gt;1027.7&lt;/td&gt;
+&lt;td&gt;2344.9&lt;td&gt;2127.2 &amp;nbsp;&amp;nbsp;&lt;small style=&quot;color:green&quot;&gt;&lt;i class=&quot;fas fa-long-arrow-alt-down&quot; style=&quot;color:green&quot;&gt;&lt;/i&gt;9.3%&lt;/small&gt;
+&lt;td&gt;927.7&lt;td&gt;885.6 &amp;nbsp;&amp;nbsp;&lt;small style=&quot;color:green&quot;&gt;&lt;i class=&quot;fas fa-long-arrow-alt-down&quot; style=&quot;color:green&quot;&gt;&lt;/i&gt;4.5%&lt;/small&gt;&lt;/td&gt;
 &lt;!-- &lt;/TABLE&gt;   --&gt;
 
 

@@ -286,7 +286,8 @@ The prover and verifier’s computation is <span class="katex"><span class="kate
 However, verification can significantly boosted by using a single multi-exponentiation check (read <a href="https://github.com/KZen-networks/bulletproofs/pull/20#discussion_r436681850">this</a> to briefly understand how multi-exponentiation works). 
 Batching proofs together further improves generation and verification times.
 In most cryptocurrency systems, range proofs are required for proving that amounts hidden in Pederson commitments are 64-bit non-negative integers.
-Thus, we compare proof sizes <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> and running times for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">n=64</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">4</span></span></span></span> and different batching configurations as shown in the following table.</p>
+Thus, we compare proof sizes <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> and running times for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">n=64</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">4</span></span></span></span> and different batching configurations as shown in the following table.
+All simulations were performed on an Intel® Core™ i7-5500U CPU running at 2.40GHz.</p>
 
 <p align="center"><em>Performance comparison of Bulletproofs and Bulletproofs+</em></p>
 <table border="1">
@@ -295,24 +296,24 @@ Thus, we compare proof sizes <sup id="fnref:1"><a href="#fn:1" class="footnote">
 <tr><th>BP<th>BP+<th>BP<th>BP+<th>BP<th>BP+
 <tr><th>1
 <td>688<td>591
-<td>82.0<td>71.9
-<td>32.7<td>25.9
+<td>75.0<td>59.3 &nbsp;&nbsp;<small style="color:green"><i class="fas fa-long-arrow-alt-down" style="color:green"></i>20.9%</small>
+<td>30.8<td>25.3 &nbsp;&nbsp;<small style="color:green"><i class="fas fa-long-arrow-alt-down" style="color:green"></i>17.8%</small>
 <tr><th>4
 <td>820<td>723
-<td>302.9<td>241.8
-<td>119.5<td>99.4
+<td>295.1<td>234.1 &nbsp;&nbsp;<small style="color:green"><i class="fas fa-long-arrow-alt-down" style="color:green"></i>20.7%</small>
+<td>116.1<td>97.5 &nbsp;&nbsp;<small style="color:green"><i class="fas fa-long-arrow-alt-down" style="color:green"></i>16%</small>
 <tr><th>8
 <td>886<td>789
-<td>663.1<td>484.0
-<td>253.1<td>201.7
+<td>590.9<td>473.5 &nbsp;&nbsp;<small style="color:green"><i class="fas fa-long-arrow-alt-down" style="color:green"></i>19.8%</small>
+<td>229.1<td>197.5 &nbsp;&nbsp;<small style="color:green"><i class="fas fa-long-arrow-alt-down" style="color:green"></i>13.8%</small>
 <tr><th>16
 <td>952<td>855
-<td>1466.9<td>1242.9
-<td>517.0<td>473.5
+<td>1187.4<td>978.0 &nbsp;&nbsp;<small style="color:green"><i class="fas fa-long-arrow-alt-down" style="color:green"></i>17.6%</small>
+<td>469.4<td>406.3 &nbsp;&nbsp;<small style="color:green"><i class="fas fa-long-arrow-alt-down" style="color:green"></i>13.5%</small>
 <tr><th>32
 <td>1018<td>921
-<td>2416.1<td>2601.9
-<td>934.5<td>1027.7</td>
+<td>2344.9<td>2127.2 &nbsp;&nbsp;<small style="color:green"><i class="fas fa-long-arrow-alt-down" style="color:green"></i>9.3%</small>
+<td>927.7<td>885.6 &nbsp;&nbsp;<small style="color:green"><i class="fas fa-long-arrow-alt-down" style="color:green"></i>4.5%</small></td>
 <!-- </TABLE>   -->
 
 
