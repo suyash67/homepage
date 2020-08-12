@@ -10,16 +10,33 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Dynamic Boltzmann Machine (DyBM) was proposed by Osogami at al. in 2015 when their team at IBM, Tokyo showed how a network of just 7 neurons could memorize a sequence of letters of alphabet1. Inspired from this work, we set out to explore DyBM and realize its usefulness in boosting performance in time-series prediction related tasks. Seven neurons memorizing sequences of alphabetical images via spike-timing dependent plasticity &#8617;" />
 <meta property="og:description" content="Dynamic Boltzmann Machine (DyBM) was proposed by Osogami at al. in 2015 when their team at IBM, Tokyo showed how a network of just 7 neurons could memorize a sequence of letters of alphabet1. Inspired from this work, we set out to explore DyBM and realize its usefulness in boosting performance in time-series prediction related tasks. Seven neurons memorizing sequences of alphabetical images via spike-timing dependent plasticity &#8617;" />
-<link rel="canonical" href="http://localhost:4000/homepage/project/2019/05/01/dybm.html" />
-<meta property="og:url" content="http://localhost:4000/homepage/project/2019/05/01/dybm.html" />
+<link rel="canonical" href="/homepage/project/2019/05/01/dybm.html" />
+<meta property="og:url" content="/homepage/project/2019/05/01/dybm.html" />
 <meta property="og:site_name" content="Suyash Bagad" />
-<meta property="og:image" content="http://localhost:4000/homepage/dybm_cover.png" />
+<meta property="og:image" content="/homepage/dybm_cover.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-05-01T00:00:00+05:30" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","image":"http://localhost:4000/homepage/dybm_cover.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/homepage/project/2019/05/01/dybm.html"},"url":"http://localhost:4000/homepage/project/2019/05/01/dybm.html","author":{"@type":"Person","name":"Personal Webpage"},"headline":"Dynamic Boltzmann Machines","dateModified":"2019-05-01T00:00:00+05:30","datePublished":"2019-05-01T00:00:00+05:30","description":"Dynamic Boltzmann Machine (DyBM) was proposed by Osogami at al. in 2015 when their team at IBM, Tokyo showed how a network of just 7 neurons could memorize a sequence of letters of alphabet1. Inspired from this work, we set out to explore DyBM and realize its usefulness in boosting performance in time-series prediction related tasks. Seven neurons memorizing sequences of alphabetical images via spike-timing dependent plasticity &#8617;","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","image":"/homepage/dybm_cover.png","mainEntityOfPage":{"@type":"WebPage","@id":"/homepage/project/2019/05/01/dybm.html"},"url":"/homepage/project/2019/05/01/dybm.html","author":{"@type":"Person","name":"Personal Webpage"},"headline":"Dynamic Boltzmann Machines","dateModified":"2019-05-01T00:00:00+05:30","datePublished":"2019-05-01T00:00:00+05:30","description":"Dynamic Boltzmann Machine (DyBM) was proposed by Osogami at al. in 2015 when their team at IBM, Tokyo showed how a network of just 7 neurons could memorize a sequence of letters of alphabet1. Inspired from this work, we set out to explore DyBM and realize its usefulness in boosting performance in time-series prediction related tasks. Seven neurons memorizing sequences of alphabetical images via spike-timing dependent plasticity &#8617;","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/homepage/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/homepage/feed.xml" title="Suyash Bagad" /><link rel="apple-touch-icon" sizes="180x180" href="/homepage/apple-touch-icon.png">
+<link rel="stylesheet" href="/homepage/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/homepage/feed.xml" title="Suyash Bagad" /><script async src="https://www.googletagmanager.com/gtag/js?id=UA-175175063-1"></script>
+<script>
+  // window['ga-disable-UA-175175063-1'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  // window.dataLayer = window.dataLayer || [];
+  // function gtag(){dataLayer.push(arguments);}
+  // gtag('js', new Date());
+
+  // gtag('config', 'UA-175175063-1');
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-175175063-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<link rel="apple-touch-icon" sizes="180x180" href="/homepage/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/homepage/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/homepage/favicon-16x16.png">
   <link rel="manifest" href="/homepage/site.webmanifest">
@@ -55,6 +72,27 @@
   <!-- Using Font-awesome in HTML -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
+  <!-- Google Analytics -->
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175175063-1"></script>
+<script>
+  // window['ga-disable-UA-175175063-1'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  // window.dataLayer = window.dataLayer || [];
+  // function gtag(){dataLayer.push(arguments);}
+  // gtag('js', new Date());
+
+  // gtag('config', 'UA-175175063-1');
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-175175063-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  
 
 </head>
 <body><header class="site-header">
@@ -180,7 +218,7 @@ variable in different tasks. We use LSTM networks as a benchmark to compare the 
       </div>
 
       <div class="footer-col one-half">
-        <em><small>Last updated on July 06, 2020</small></em>
+        <em><small>Last updated on August 12, 2020</small></em>
         <small><br/></small>
         <em><small>© Suyash Bagad. Powered by Jekyll.
 </small></em>
