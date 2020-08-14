@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/homepage/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/homepage/" rel="alternate" type="text/html" /><updated>2020-08-14T14:09:37+05:30</updated><id>http://localhost:4000/homepage/feed.xml</id><title type="html">Suyash Bagad</title><subtitle>© Suyash Bagad. Powered by Jekyll.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/homepage/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/homepage/" rel="alternate" type="text/html" /><updated>2020-08-14T15:08:58+05:30</updated><id>http://localhost:4000/homepage/feed.xml</id><title type="html">Suyash Bagad</title><subtitle>© Suyash Bagad. Powered by Jekyll.
 </subtitle><author><name>Personal Webpage</name></author><entry><title type="html">Comparing Bulletproofs+ and Bulletproofs - Part I</title><link href="http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part1.html" rel="alternate" type="text/html" title="Comparing Bulletproofs+ and Bulletproofs - Part I" /><published>2020-07-03T00:00:00+05:30</published><updated>2020-07-03T00:00:00+05:30</updated><id>http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part1</id><content type="html" xml:base="http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part1.html">{% katexmm %}
 [Bulletproofs+](https://eprint.iacr.org/2020/735.pdf) is a recently proposed range proof which is similar in spirit to [Bulletproofs](https://eprint.iacr.org/2017/1066.pdf). Both of these range proof protocols enable proof sizes logarithmic in the number of bits of the range using a recursive inner product protocol. Bulletproofs relies on the improved inner product protocol [^1] while Bulletproofs+ uses a weighted inner product protocol [^2].
 
@@ -634,52 +634,32 @@ A^{-e^2} \cdot
 
 &lt;h3 id=&quot;comparison-of-verification-times&quot;&gt;Comparison of Verification Times&lt;/h3&gt;
 
-&lt;p&gt;The following table shows verification times for BP and BP+ for &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;64&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;64&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.64444em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;4&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;-bit range proofs over &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mtext mathvariant=&quot;monospace&quot;&gt;secp256k1&lt;/mtext&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\texttt{secp256k1}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.83333em;vertical-align:-0.22222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord text&quot;&gt;&lt;span class=&quot;mord texttt&quot;&gt;secp256k1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; curve in Rust.
+&lt;p&gt;The following plot shows verification times for BP and BP+ for &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;64&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;64&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.64444em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;4&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;-bit range proofs over &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mtext mathvariant=&quot;monospace&quot;&gt;secp256k1&lt;/mtext&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\texttt{secp256k1}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.83333em;vertical-align:-0.22222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord text&quot;&gt;&lt;span class=&quot;mord texttt&quot;&gt;secp256k1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; curve in Rust.
 The code can be found &lt;a href=&quot;https://github.com/KZen-networks/bulletproofs&quot;&gt;here&lt;/a&gt;.
 Note that the verification speed can be further improved using &lt;a href=&quot;https://cr.yp.to/papers/pippenger.pdf&quot;&gt;Pipenger’s exponentiation algorithm&lt;/a&gt; for computing a multi-exponentiation.
 All simulations were performed on an Intel® Core™ i7-5500U CPU running at 2.40GHz.&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;m&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;m&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;BP Verification (ms)&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;BP+ Verification (ms)&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;14.15&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;14.36&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;27.26&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;26.91&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;62.81&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;53.51&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;8&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;121.19&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;109.23&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;16&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;279.70&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;235.26&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;32&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;718.34&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;556.90&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;!-- 
+|  &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;m&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;m&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 	| BP Verification (ms) 	| BP+ Verification (ms) 	|
+|:--:	|:--------------------:	|:---------------------:	|
+| 1  	|         14.15        	|         14.36         	|
+| 2  	|         27.26        	|         26.91         	|
+| 4  	|         62.81        	|         53.51         	|
+| 8  	|        121.19        	|         109.23        	|
+| 16 	|        279.70        	|         235.26        	|
+| 32 	|        718.34        	|         556.90        	|
+--&gt;
+
+&lt;center&gt;
+&lt;!--  --&gt;
+
+
+    &lt;figure&gt;
+        &lt;img src=&quot;/homepage/assets/images/Comparing Bulletproofs+ and Bulletproofs - Part III/bp_bp_plus_ver_plot-1.png&quot; /&gt;
+        &lt;figcaption&gt;Plot of verification times of &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;64&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;64&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.64444em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;4&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;-bit BP and BP+ range proofs for different aggregation sizes &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;m&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathdefault&quot;&gt;m&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;.&lt;/figcaption&gt;
+    &lt;/figure&gt;
+
+&lt;/center&gt;
 
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
