@@ -1,5 +1,274 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/homepage/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/homepage/" rel="alternate" type="text/html" /><updated>2021-02-10T15:37:44+05:30</updated><id>http://localhost:4000/homepage/feed.xml</id><title type="html">Suyash Bagad</title><subtitle>© Suyash Bagad. Powered by Jekyll.
-</subtitle><author><name>Personal Webpage</name></author><entry><title type="html">Comparing Bulletproofs+ and Bulletproofs - Part II</title><link href="http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part2.html" rel="alternate" type="text/html" title="Comparing Bulletproofs+ and Bulletproofs - Part II" /><published>2020-07-03T00:00:00+05:30</published><updated>2020-07-03T00:00:00+05:30</updated><id>http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part2</id><content type="html" xml:base="http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part2.html">{% katexmm %}
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/homepage/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/homepage/" rel="alternate" type="text/html" /><updated>2021-02-10T15:55:10+05:30</updated><id>http://localhost:4000/homepage/feed.xml</id><title type="html">Suyash Bagad</title><subtitle>© Suyash Bagad. Powered by Jekyll.
+</subtitle><author><name>Personal Webpage</name></author><entry><title type="html">Monero Bulletproofs+ Security Audit</title><link href="http://localhost:4000/homepage/project/2021/02/10/bp-plus-audit.html" rel="alternate" type="text/html" title="Monero Bulletproofs+ Security Audit" /><published>2021-02-10T00:00:00+05:30</published><updated>2021-02-10T00:00:00+05:30</updated><id>http://localhost:4000/homepage/project/2021/02/10/bp-plus-audit</id><content type="html" xml:base="http://localhost:4000/homepage/project/2021/02/10/bp-plus-audit.html">&lt;p&gt;We are in the last stage of completion of the Bulletproofs+ security audit for Monero. We are releasing version 1.0 today and expect to release the final version by February 17, 2020.
+Here’s the first version of the audit report: &lt;a href=&quot;/homepage/assets/pdfs/bulletproofs_plus_audit_report_v1.0.pdf&quot;&gt; Monero Bulletproofs+ Security Audit - v1.0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This is joint work with &lt;a href=&quot;https://www.omershlomovits.com/&quot;&gt;Omer Shlomovits&lt;/a&gt; and Prof. &lt;a href=&quot;https://cs.au.dk/~orlandi/&quot;&gt;Claudio Orlandi&lt;/a&gt; of &lt;a href=&quot;https://zengo.com/research/&quot;&gt;ZenGo X&lt;/a&gt;.&lt;/p&gt;</content><author><name>Personal Webpage</name></author><summary type="html">We are in the last stage of completion of the Bulletproofs+ security audit for Monero. We are releasing version 1.0 today and expect to release the final version by February 17, 2020. Here’s the first version of the audit report: Monero Bulletproofs+ Security Audit - v1.0</summary></entry><entry><title type="html">Comparing Bulletproofs+ and Bulletproofs - Part III</title><link href="http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part3.html" rel="alternate" type="text/html" title="Comparing Bulletproofs+ and Bulletproofs - Part III" /><published>2020-07-03T00:00:00+05:30</published><updated>2020-07-03T00:00:00+05:30</updated><id>http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part3</id><content type="html" xml:base="http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part3.html">{% katexmm %}
+In this third part on comparing [Bulletproofs+](https://eprint.iacr.org/2020/735.pdf) and [Bulletproofs](https://eprint.iacr.org/2017/1066.pdf), we will delve into the math of aggregate verification of the range proofs. We compare the verification speeds of both of the protocols qualitatively as well as quantitatively. Please read blogs [1](https://suyash67.github.io/homepage/project/2020/07/03/bulletproofs_plus_part1.html), [2](https://suyash67.github.io/homepage/project/2020/07/03/bulletproofs_plus_part2.html) for a primer on Bulletproofs and Bulletproofs+.
+
+
+### Aggregated Range Proof Protocols 
+
+An aggregated range proof implies proving that each of the quantity $a_j \in \mathbb{Z}_q$ for $j=1,2,\dots,m$ is in the range $[0,2^n - 1]$ using a single proof. An aggregated Bulletproofs and Bulletproofs+ proofs have the following structure.
+{% katex display %}
+\begin{aligned}
+\texttt{crs}_{bp} &amp;= \{ \textbf{g}, \textbf{h} \in \mathbb{G}^{n\cdot m}, \ g,h \in \mathbb{G}, \ \textbf{V}=(V_1,V_2, \dots, V_m) \in \mathbb{G}^m \} \\[6pt]
+\texttt{wit}_{bp} &amp;= \{ \textbf{a}, \mathbf{f} \in \mathbb{Z}_q^m \} \\[6pt]
+\texttt{stmt}_{bp} &amp;= \{ V_j = g^{a_j} h^{f_j} \text{ and } a_j \in [0,2^{n}-1] \ \forall j \in [m] \} \\[6pt]
+\Pi_{bp} &amp;= \left\{ A,S,T_1,T_2, (\textbf{L,\ R}) = \big( L_i, R_i \big)_{j=1}^{\text{log}_2(nm)} \in \mathbb{G}^{2 \times \text{log}_2(nm)}, \tau, \hat{t}, \mu, a,b \in \mathbb{Z}_q \right\}
+\end{aligned}
+{% endkatex %}
+
+{% katex display %}
+\Pi_{bp+} = \left\{ A,(\textbf{L,\ R}) = \big( L_i, R_i \big)_{j=1}^{\text{log}_2(nm)} \in \mathbb{G}^{2 \times \text{log}_2(nm)}, r',s',\delta' \in \mathbb{Z}_q,  A',B' \in \mathbb{G} \right\}
+{% endkatex %}
+
+Note that the $\texttt{crs, wit, stmt}$ remain unchanged for Bulletproofs+.
+
+### Bulletproofs Verification
+
+Given an aggregated BP proof, a verifier needs to check the following:
+{% katex display %}
+\tag{1} 
+g^{\hat{t}} \cdot h^{\tau} \stackrel{?}{=} g^{\delta(y,z)} \cdot \textbf{V}^{z^2 \cdot \textbf{z}^m} \cdot T_1^x \cdot T_2^{x^2} 
+{% endkatex %}
+
+{% katex display %}
+\tag{2}
+\text{verify-ipp}(\textbf{g}, \textbf{h}', g^{x_u}, Ph^{-\mu}g^{x_u \cdot \hat{t}}, \hat{t})
+{% endkatex %}
+
+where $\textbf{h}' = (h_1, h_2^{y^{-1}}, \dots, h_{mn}^{y^{1-mn}})$.
+Note that the verifier can compute $P$ as 
+
+$$\tag{3} P = A \cdot S^x \cdot \textbf{g}^{-z \cdot \textbf{1}^{mn}} \cdot (\textbf{h}')^{z \cdot \textbf{y}^{mn} + \textbf{d}}$$ 
+
+where $\textbf{d} = (z^2 \cdot \textbf{2}^n, z^3 \cdot \textbf{2}^n, \dots, z^{m+1} \cdot \textbf{2}^n) \in \mathbb{Z}^{mn}_q$ from publicly available information.
+The inner product proof in $(2)$ can be verified in a single multi-exponentiation equation [^1] as
+
+$$
+\tag{4}
+\textbf{g}^{a \cdot \textbf{s}} \cdot \textbf{h}^{b \cdot \textbf{s}'} \cdot g^{x_u \cdot ab} \stackrel{?}{=} (Ph^{-\mu}) \cdot \prod_{j=1}^{\text{log}_2(nm)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}}
+$$
+
+where $\textbf{s} = (s_1, s_2, \dots, s_{mn}), \textbf{s}' = (s_1^{-1}, s_2^{-1}, \dots, s_{mn}^{-1}) \in \mathbb{Z}_q^{mn}$ such that for all $i \in [nm]$
+
+$$
+s_i = \prod_{j=1}^{\text{log}_2(nm)} x_j^{b(i,j)}
+\quad
+\text{ where }
+\quad
+b(i,j) = 
+\begin{cases}
+   1 &amp;\text{if $j$-th bit of } (i-1) \text{ is 1} \\
+   -1 &amp;\text{otherwise}
+\end{cases}
+$$
+
+and $(x_1, x_2, \dots, x_{\text{log}_2(nm)})$ are the challenges using in $\text{log}_2(nm)$ rounds of inner product protocol. Substituting $(3)$ in $(4)$ to get a single inner product proof check, we get
+
+$$
+\textbf{g}^{a \cdot \textbf{s}} \cdot \textbf{h}^{b \cdot \textbf{s}'} \cdot g^{x_u \cdot ab} \stackrel{?}{=} 
+\left(
+    A \cdot S^x \cdot \textbf{g}^{-z \cdot \textbf{1}^{mn}} \cdot (\textbf{h}')^{z \cdot \textbf{y}^{mn} + \textbf{d}} \cdot h^{-\mu} \cdot g^{x_u \cdot \hat{t}}
+\right) 
+\cdot \prod_{j=1}^{\text{log}_2(nm)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}}
+$$
+
+Bringing everything to the left, we have
+$$
+\textbf{g}^{a \cdot \textbf{s} + z \cdot \textbf{1}^{mn}} \cdot 
+\textbf{h}^{b \cdot \textbf{s}' - z \cdot \textbf{1}^{mn} - (\textbf{y}')^{mn} \circ \textbf{d}} \cdot 
+g^{x_u (ab - \hat{t})} \cdot
+h^{\mu} \cdot 
+A^{-1} \cdot 
+S^{-x} \cdot
+\prod_{j=1}^{\text{log}_2(nm)} L_j^{-x_j^2} \cdot R_j^{-x_j^{-2}}
+\stackrel{?}{=}
+1
+$$
+
+where $\textbf{y}' = (1, y^{-1}, y^{-2}, \dots, y^{-mn+1})$. Substituting 
+$$
+\begin{aligned}
+\textbf{x}_L &amp;= (-x_1^2, -x_2^2, \dots, -x_{\text{log}_2(nm)}^2) \\
+\textbf{x}_R &amp;= (-x_1^{-2}, -x_2^{-2}, \dots, -x_{\text{log}_2(nm)}^{-2}),
+\end{aligned}
+$$
+we get 
+
+$$
+\tag{5}
+\textbf{g}^{a \cdot \textbf{s} + z \cdot \textbf{1}^{mn}} \cdot 
+\textbf{h}^{b \cdot \textbf{s}' - z \cdot \textbf{1}^{mn} - (\textbf{y}')^{mn} \circ \textbf{d}} \cdot 
+g^{x_u (ab - \hat{t})} \cdot
+h^{\mu} \cdot 
+A^{-1} \cdot 
+S^{-x} \cdot
+\textbf{L}^{\textbf{x}_L} \cdot
+\textbf{R}^{\textbf{x}_R}
+\stackrel{?}{=}
+1
+$$
+
+A verifier, thus, has to verify equations $(1), (5)$ to verify a BP range proof. We can re-write $(1)$ as
+$$
+\tag{6}
+g^{\hat{t} - \delta(y,z)} \cdot 
+h^{\tau} \cdot
+\textbf{V}^{-z^2 \cdot \textbf{z}^m} \cdot
+\cdot T_1^{-x} \cdot 
+T_2^{-x^2}
+\stackrel{?}{=} 
+1
+$$
+
+Lastly, she can combine equations $(5), (6)$ into a single multi-exponentiation check using a random scalar $c \in \mathbb{Z}_q$ as follows:
+
+$$
+\left(
+    g^{\hat{t} - \delta(y,z)} \cdot 
+    h^{\tau} \cdot
+    \textbf{V}^{-z^2 \cdot \textbf{z}^m} \cdot
+    \cdot T_1^{-x} \cdot 
+    T_2^{-x^2}
+\right)^c 
+\cdot
+\textbf{g}^{a \cdot \textbf{s} + z \cdot \textbf{1}^{mn}} \cdot 
+\textbf{h}^{b \cdot \textbf{s}' - z \cdot \textbf{1}^{mn} - (\textbf{y}')^{mn} \circ \textbf{d}} \cdot 
+\\
+g^{x_u (ab - \hat{t})} \cdot
+h^{\mu} \cdot 
+A^{-1} \cdot 
+S^{-x} \cdot
+\textbf{L}^{\textbf{x}_L} \cdot
+\textbf{R}^{\textbf{x}_R}
+\stackrel{?}{=}
+1
+\\
+$$
+
+$$
+\tag{7}
+\implies
+\textbf{g}^{a \cdot \textbf{s} + z \cdot \textbf{1}^{mn}} \cdot 
+\textbf{h}^{b \cdot \textbf{s}' - z \cdot \textbf{1}^{mn} - (\textbf{y}')^{mn} \circ \textbf{d}} \cdot 
+g^{x_u (ab - \hat{t}) + c(\hat{t} - \delta(y,z))} \cdot
+h^{\mu + c\tau} \cdot 
+\\
+A^{-1} \cdot 
+S^{-x} \cdot
+\textbf{L}^{\textbf{x}_L} \cdot
+\textbf{R}^{\textbf{x}_R} \cdot
+\textbf{V}^{-c z^2 \cdot \textbf{z}^m} \cdot
+\cdot T_1^{-c x} \cdot 
+T_2^{-c x^2}
+\stackrel{?}{=}
+1
+$$
+
+Thus, an aggregated BP range proof can be verified by a single multi-exponentiation check of size $2mn + 2\text{log}_2(mn) + m + 6$.
+
+### Bulletproofs+ Verification
+
+To verify an aggregated Bulletproofs+ range proof $\Pi_{bp+}$, a verifier needs to compute $\hat{A}$ and run the $\text{verify-}zk\text{-}\textsf{WIP}$.
+
+$$
+\tag{8}
+\hat{A} = A \cdot
+\textbf{g}^{-z \cdot \textbf{1}^{mn}} \cdot 
+\textbf{h}^{z \cdot \textbf{1}^{mn} + \textbf{d} \circ \overleftarrow{y}^{mn}} \cdot
+\textbf{V}^{y^{mn+1} \cdot z^2 \cdot \textbf{z}^m} \cdot g^{\zeta(y,z)} 
+\\[6pt]
+\text{verify-}zk\text{-}\textsf{WIP}_{y}(\textbf{g}, \textbf{h}, g,h, \hat{A})
+$$
+
+where $\zeta(y,z) = (z - z^2) y \cdot \langle \textbf{1}^{mn},\textbf{y}^{nm} \rangle - zy^{mn+1} \cdot \langle \textbf{1}^{mn}, \textbf{d} \rangle$ and $\overleftarrow{y}^{nm} = (y^{mn}, y^{mn-1}, \dots, y)$.
+Similar to the inner product argument, the verification in weighted inner product argument too can be expressed as a single equation by unrolling recursion.
+
+$$
+\tag{9}
+\textbf{g}^{e \cdot r' \cdot \textbf{s}} \cdot 
+\textbf{h}^{e \cdot s' \cdot \textbf{s}'} \cdot 
+g^{r' \odot s'} \cdot
+h^{\delta'} 
+\stackrel{?}{=} 
+(\hat{A})^{e^2} \cdot 
+\left(
+    \prod_{j=1}^{\text{log}_2(nm)} L_j^{e^2 \cdot x_j^2} \cdot R_j^{e^2 \cdot x_j^{-2}}
+\right) \cdot
+(A')^{e} \cdot B 
+$$
+
+By substituting $\hat{A}$, the verification boils downs to a single multi-exponentiation check.
+
+$$
+\textbf{g}^{e \cdot r' \cdot \textbf{s}} \cdot 
+\textbf{h}^{e \cdot s' \cdot \textbf{s}'} \cdot 
+g^{r' \odot s'} \cdot
+h^{\delta'} 
+\stackrel{?}{=} 
+\left(
+    A \cdot
+    \textbf{g}^{-z \cdot \textbf{1}^{mn}} \cdot 
+    \textbf{h}^{z \cdot \textbf{1}^{mn} + \textbf{d} \circ \overleftarrow{y}^{mn}} \cdot
+    \textbf{V}^{y^{mn+1} \cdot z^2 \cdot \textbf{z}^m} \cdot g^{\zeta(y,z)} 
+\right)^{e^2} \cdot 
+\\
+\left(
+    \prod_{j=1}^{\text{log}_2(nm)} L_j^{e^2 \cdot x_j^2} \cdot R_j^{e^2 \cdot x_j^{-2}}
+\right) \cdot
+(A')^{e} \cdot B 
+$$
+
+$$
+\implies 
+\textbf{g}^{e \cdot r' \cdot \textbf{s} + ze^2 \textbf{1}^{mn}} \cdot 
+\textbf{h}^{e \cdot s' \cdot \textbf{s}' - ze^2 \cdot \textbf{1}^{mn} - e^2 \cdot \textbf{d} \circ \overleftarrow{y}^{mn}} \cdot 
+g^{r' \odot s' - e^2\zeta(y,z)} \cdot
+h^{\delta'} \cdot
+A^{-e^2} \cdot
+\\
+\textbf{V}^{-e^2 y^{mn+1} \cdot z^2 \cdot \textbf{z}^m} \cdot 
+\textbf{L}^{\textbf{x}_L} \cdot
+\textbf{R}^{\textbf{x}_R} \cdot
+(A')^{-e} \cdot B^{-1} 
+$$
+
+Note here, we have 
+$$
+\begin{aligned}
+\textbf{x}_L &amp;= e^2 \cdot (-x_1^2, -x_2^2, \dots, -x_{\text{log}_2(nm)}^2) \\
+\textbf{x}_R &amp;= e^2 \cdot (-x_1^{-2}, -x_2^{-2}, \dots, -x_{\text{log}_2(nm)}^{-2}),
+\end{aligned}
+$$
+
+Thus, an aggregated BP+ range proof can be verified by a single multi-exponentiation check of size $2mn + 2\text{log}_2(mn) + m + 5$.
+
+### Comparison of Verification Times
+
+The following plot shows verification times for BP and BP+ for $64$-bit range proofs over $\texttt{secp256k1}$ curve in Rust.
+The code can be found [here](https://github.com/KZen-networks/bulletproofs).
+Note that the verification speed can be further improved using [Pipenger's exponentiation algorithm](https://cr.yp.to/papers/pippenger.pdf) for computing a multi-exponentiation.
+All simulations were performed on an Intel® Core™ i7-5500U CPU running at 2.40GHz.
+
+&lt;!-- 
+|  $m$ 	| BP Verification (ms) 	| BP+ Verification (ms) 	|
+|:--:	|:--------------------:	|:---------------------:	|
+| 1  	|         14.15        	|         14.36         	|
+| 2  	|         27.26        	|         26.91         	|
+| 4  	|         62.81        	|         53.51         	|
+| 8  	|        121.19        	|         109.23        	|
+| 16 	|        279.70        	|         235.26        	|
+| 32 	|        718.34        	|         556.90        	|
+--&gt;
+
+&lt;center&gt;
+{% include image.html name=&quot;bp_bp_plus_ver_plot-1.png&quot; caption=&quot;Plot of verification times of $64$-bit BP and BP+ range proofs for different aggregation sizes $m$.&quot; %}
+&lt;/center&gt;
+
+[^1]: The challenge $x_u$ is used to multiply the given inner product $\langle \textbf{a},\textbf{b} \rangle$ in the exponent of a generator $g \in \mathbb{G}$. BP paper uses $u \in \mathbb{G}$ in Protocol 1, 2 instead of $g$. 
+
+{% endkatexmm %}</content><author><name>Personal Webpage</name></author><summary type="html">In this third part on comparing Bulletproofs+ and Bulletproofs, we will delve into the math of aggregate verification of the range proofs. We compare the verification speeds of both of the protocols qualitatively as well as quantitatively. Please read blogs 1, 2 for a primer on Bulletproofs and Bulletproofs+.</summary></entry><entry><title type="html">Comparing Bulletproofs+ and Bulletproofs - Part II</title><link href="http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part2.html" rel="alternate" type="text/html" title="Comparing Bulletproofs+ and Bulletproofs - Part II" /><published>2020-07-03T00:00:00+05:30</published><updated>2020-07-03T00:00:00+05:30</updated><id>http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part2</id><content type="html" xml:base="http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part2.html">{% katexmm %}
 [Bulletproofs+](https://eprint.iacr.org/2020/735.pdf) is a recently proposed range proof which is similar in spirit to [Bulletproofs](https://eprint.iacr.org/2017/1066.pdf). Both of these range proof protocols enable proof sizes logarithmic in the number of bits of the range using a recursive inner product protocol. We will try to highlight a small but crucial difference in the design of the two protocols and discuss its implications on their performance.
 
 ### Logarithmic Range Proof Protocol 
@@ -392,273 +661,7 @@ We will see in the next blog how this helps building Bulletproofs+ - a range pro
 
 [^3]: Note that $\textbf{a}_L \odot_{y} \textbf{b}_L = \langle \textbf{a}_L, (y,y^2, \ldots, y^{\frac{n}{2}}) \circ \textbf{b}_L \rangle$ for $\textbf{a}_L, \textbf{b}_L \in \mathbb{Z}_q^{\frac{n}{2}}$.
 
-{% endkatexmm %}</content><author><name>Personal Webpage</name></author><summary type="html">Bulletproofs+ is a recently proposed range proof which is similar in spirit to Bulletproofs. Both of these range proof protocols enable proof sizes logarithmic in the number of bits of the range using a recursive inner product protocol. Bulletproofs relies on the improved inner product protocol 1 while Bulletproofs+ uses a weighted inner product protocol 2. Benedikt Bünz et al, “Bulletproofs: Short Proofs for Confidential Transactions and More”, in Cryptology ePrint Archive, Report 2017/1066, Available at https://eprint.iacr.org/2017/1066.pdf &amp;#8617; Chung H. et al, “Bulletproofs+: Shorter Proofs for Privacy-Enhanced Distributed Ledger”, in Cryptology ePrint Archive, Report 2020/735, Available at https://eprint.iacr.org/2020/735.pdf. &amp;#8617;</summary></entry><entry><title type="html">Comparing Bulletproofs+ and Bulletproofs - Part III</title><link href="http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part3.html" rel="alternate" type="text/html" title="Comparing Bulletproofs+ and Bulletproofs - Part III" /><published>2020-07-03T00:00:00+05:30</published><updated>2020-07-03T00:00:00+05:30</updated><id>http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part3</id><content type="html" xml:base="http://localhost:4000/homepage/project/2020/07/03/bulletproofs_plus_part3.html">{% katexmm %}
-In this third part on comparing [Bulletproofs+](https://eprint.iacr.org/2020/735.pdf) and [Bulletproofs](https://eprint.iacr.org/2017/1066.pdf), we will delve into the math of aggregate verification of the range proofs. We compare the verification speeds of both of the protocols qualitatively as well as quantitatively. Please read blogs [1](https://suyash67.github.io/homepage/project/2020/07/03/bulletproofs_plus_part1.html), [2](https://suyash67.github.io/homepage/project/2020/07/03/bulletproofs_plus_part2.html) for a primer on Bulletproofs and Bulletproofs+.
-
-
-### Aggregated Range Proof Protocols 
-
-An aggregated range proof implies proving that each of the quantity $a_j \in \mathbb{Z}_q$ for $j=1,2,\dots,m$ is in the range $[0,2^n - 1]$ using a single proof. An aggregated Bulletproofs and Bulletproofs+ proofs have the following structure.
-{% katex display %}
-\begin{aligned}
-\texttt{crs}_{bp} &amp;= \{ \textbf{g}, \textbf{h} \in \mathbb{G}^{n\cdot m}, \ g,h \in \mathbb{G}, \ \textbf{V}=(V_1,V_2, \dots, V_m) \in \mathbb{G}^m \} \\[6pt]
-\texttt{wit}_{bp} &amp;= \{ \textbf{a}, \mathbf{f} \in \mathbb{Z}_q^m \} \\[6pt]
-\texttt{stmt}_{bp} &amp;= \{ V_j = g^{a_j} h^{f_j} \text{ and } a_j \in [0,2^{n}-1] \ \forall j \in [m] \} \\[6pt]
-\Pi_{bp} &amp;= \left\{ A,S,T_1,T_2, (\textbf{L,\ R}) = \big( L_i, R_i \big)_{j=1}^{\text{log}_2(nm)} \in \mathbb{G}^{2 \times \text{log}_2(nm)}, \tau, \hat{t}, \mu, a,b \in \mathbb{Z}_q \right\}
-\end{aligned}
-{% endkatex %}
-
-{% katex display %}
-\Pi_{bp+} = \left\{ A,(\textbf{L,\ R}) = \big( L_i, R_i \big)_{j=1}^{\text{log}_2(nm)} \in \mathbb{G}^{2 \times \text{log}_2(nm)}, r',s',\delta' \in \mathbb{Z}_q,  A',B' \in \mathbb{G} \right\}
-{% endkatex %}
-
-Note that the $\texttt{crs, wit, stmt}$ remain unchanged for Bulletproofs+.
-
-### Bulletproofs Verification
-
-Given an aggregated BP proof, a verifier needs to check the following:
-{% katex display %}
-\tag{1} 
-g^{\hat{t}} \cdot h^{\tau} \stackrel{?}{=} g^{\delta(y,z)} \cdot \textbf{V}^{z^2 \cdot \textbf{z}^m} \cdot T_1^x \cdot T_2^{x^2} 
-{% endkatex %}
-
-{% katex display %}
-\tag{2}
-\text{verify-ipp}(\textbf{g}, \textbf{h}', g^{x_u}, Ph^{-\mu}g^{x_u \cdot \hat{t}}, \hat{t})
-{% endkatex %}
-
-where $\textbf{h}' = (h_1, h_2^{y^{-1}}, \dots, h_{mn}^{y^{1-mn}})$.
-Note that the verifier can compute $P$ as 
-
-$$\tag{3} P = A \cdot S^x \cdot \textbf{g}^{-z \cdot \textbf{1}^{mn}} \cdot (\textbf{h}')^{z \cdot \textbf{y}^{mn} + \textbf{d}}$$ 
-
-where $\textbf{d} = (z^2 \cdot \textbf{2}^n, z^3 \cdot \textbf{2}^n, \dots, z^{m+1} \cdot \textbf{2}^n) \in \mathbb{Z}^{mn}_q$ from publicly available information.
-The inner product proof in $(2)$ can be verified in a single multi-exponentiation equation [^1] as
-
-$$
-\tag{4}
-\textbf{g}^{a \cdot \textbf{s}} \cdot \textbf{h}^{b \cdot \textbf{s}'} \cdot g^{x_u \cdot ab} \stackrel{?}{=} (Ph^{-\mu}) \cdot \prod_{j=1}^{\text{log}_2(nm)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}}
-$$
-
-where $\textbf{s} = (s_1, s_2, \dots, s_{mn}), \textbf{s}' = (s_1^{-1}, s_2^{-1}, \dots, s_{mn}^{-1}) \in \mathbb{Z}_q^{mn}$ such that for all $i \in [nm]$
-
-$$
-s_i = \prod_{j=1}^{\text{log}_2(nm)} x_j^{b(i,j)}
-\quad
-\text{ where }
-\quad
-b(i,j) = 
-\begin{cases}
-   1 &amp;\text{if $j$-th bit of } (i-1) \text{ is 1} \\
-   -1 &amp;\text{otherwise}
-\end{cases}
-$$
-
-and $(x_1, x_2, \dots, x_{\text{log}_2(nm)})$ are the challenges using in $\text{log}_2(nm)$ rounds of inner product protocol. Substituting $(3)$ in $(4)$ to get a single inner product proof check, we get
-
-$$
-\textbf{g}^{a \cdot \textbf{s}} \cdot \textbf{h}^{b \cdot \textbf{s}'} \cdot g^{x_u \cdot ab} \stackrel{?}{=} 
-\left(
-    A \cdot S^x \cdot \textbf{g}^{-z \cdot \textbf{1}^{mn}} \cdot (\textbf{h}')^{z \cdot \textbf{y}^{mn} + \textbf{d}} \cdot h^{-\mu} \cdot g^{x_u \cdot \hat{t}}
-\right) 
-\cdot \prod_{j=1}^{\text{log}_2(nm)} L_j^{x_j^2} \cdot R_j^{x_j^{-2}}
-$$
-
-Bringing everything to the left, we have
-$$
-\textbf{g}^{a \cdot \textbf{s} + z \cdot \textbf{1}^{mn}} \cdot 
-\textbf{h}^{b \cdot \textbf{s}' - z \cdot \textbf{1}^{mn} - (\textbf{y}')^{mn} \circ \textbf{d}} \cdot 
-g^{x_u (ab - \hat{t})} \cdot
-h^{\mu} \cdot 
-A^{-1} \cdot 
-S^{-x} \cdot
-\prod_{j=1}^{\text{log}_2(nm)} L_j^{-x_j^2} \cdot R_j^{-x_j^{-2}}
-\stackrel{?}{=}
-1
-$$
-
-where $\textbf{y}' = (1, y^{-1}, y^{-2}, \dots, y^{-mn+1})$. Substituting 
-$$
-\begin{aligned}
-\textbf{x}_L &amp;= (-x_1^2, -x_2^2, \dots, -x_{\text{log}_2(nm)}^2) \\
-\textbf{x}_R &amp;= (-x_1^{-2}, -x_2^{-2}, \dots, -x_{\text{log}_2(nm)}^{-2}),
-\end{aligned}
-$$
-we get 
-
-$$
-\tag{5}
-\textbf{g}^{a \cdot \textbf{s} + z \cdot \textbf{1}^{mn}} \cdot 
-\textbf{h}^{b \cdot \textbf{s}' - z \cdot \textbf{1}^{mn} - (\textbf{y}')^{mn} \circ \textbf{d}} \cdot 
-g^{x_u (ab - \hat{t})} \cdot
-h^{\mu} \cdot 
-A^{-1} \cdot 
-S^{-x} \cdot
-\textbf{L}^{\textbf{x}_L} \cdot
-\textbf{R}^{\textbf{x}_R}
-\stackrel{?}{=}
-1
-$$
-
-A verifier, thus, has to verify equations $(1), (5)$ to verify a BP range proof. We can re-write $(1)$ as
-$$
-\tag{6}
-g^{\hat{t} - \delta(y,z)} \cdot 
-h^{\tau} \cdot
-\textbf{V}^{-z^2 \cdot \textbf{z}^m} \cdot
-\cdot T_1^{-x} \cdot 
-T_2^{-x^2}
-\stackrel{?}{=} 
-1
-$$
-
-Lastly, she can combine equations $(5), (6)$ into a single multi-exponentiation check using a random scalar $c \in \mathbb{Z}_q$ as follows:
-
-$$
-\left(
-    g^{\hat{t} - \delta(y,z)} \cdot 
-    h^{\tau} \cdot
-    \textbf{V}^{-z^2 \cdot \textbf{z}^m} \cdot
-    \cdot T_1^{-x} \cdot 
-    T_2^{-x^2}
-\right)^c 
-\cdot
-\textbf{g}^{a \cdot \textbf{s} + z \cdot \textbf{1}^{mn}} \cdot 
-\textbf{h}^{b \cdot \textbf{s}' - z \cdot \textbf{1}^{mn} - (\textbf{y}')^{mn} \circ \textbf{d}} \cdot 
-\\
-g^{x_u (ab - \hat{t})} \cdot
-h^{\mu} \cdot 
-A^{-1} \cdot 
-S^{-x} \cdot
-\textbf{L}^{\textbf{x}_L} \cdot
-\textbf{R}^{\textbf{x}_R}
-\stackrel{?}{=}
-1
-\\
-$$
-
-$$
-\tag{7}
-\implies
-\textbf{g}^{a \cdot \textbf{s} + z \cdot \textbf{1}^{mn}} \cdot 
-\textbf{h}^{b \cdot \textbf{s}' - z \cdot \textbf{1}^{mn} - (\textbf{y}')^{mn} \circ \textbf{d}} \cdot 
-g^{x_u (ab - \hat{t}) + c(\hat{t} - \delta(y,z))} \cdot
-h^{\mu + c\tau} \cdot 
-\\
-A^{-1} \cdot 
-S^{-x} \cdot
-\textbf{L}^{\textbf{x}_L} \cdot
-\textbf{R}^{\textbf{x}_R} \cdot
-\textbf{V}^{-c z^2 \cdot \textbf{z}^m} \cdot
-\cdot T_1^{-c x} \cdot 
-T_2^{-c x^2}
-\stackrel{?}{=}
-1
-$$
-
-Thus, an aggregated BP range proof can be verified by a single multi-exponentiation check of size $2mn + 2\text{log}_2(mn) + m + 6$.
-
-### Bulletproofs+ Verification
-
-To verify an aggregated Bulletproofs+ range proof $\Pi_{bp+}$, a verifier needs to compute $\hat{A}$ and run the $\text{verify-}zk\text{-}\textsf{WIP}$.
-
-$$
-\tag{8}
-\hat{A} = A \cdot
-\textbf{g}^{-z \cdot \textbf{1}^{mn}} \cdot 
-\textbf{h}^{z \cdot \textbf{1}^{mn} + \textbf{d} \circ \overleftarrow{y}^{mn}} \cdot
-\textbf{V}^{y^{mn+1} \cdot z^2 \cdot \textbf{z}^m} \cdot g^{\zeta(y,z)} 
-\\[6pt]
-\text{verify-}zk\text{-}\textsf{WIP}_{y}(\textbf{g}, \textbf{h}, g,h, \hat{A})
-$$
-
-where $\zeta(y,z) = (z - z^2) y \cdot \langle \textbf{1}^{mn},\textbf{y}^{nm} \rangle - zy^{mn+1} \cdot \langle \textbf{1}^{mn}, \textbf{d} \rangle$ and $\overleftarrow{y}^{nm} = (y^{mn}, y^{mn-1}, \dots, y)$.
-Similar to the inner product argument, the verification in weighted inner product argument too can be expressed as a single equation by unrolling recursion.
-
-$$
-\tag{9}
-\textbf{g}^{e \cdot r' \cdot \textbf{s}} \cdot 
-\textbf{h}^{e \cdot s' \cdot \textbf{s}'} \cdot 
-g^{r' \odot s'} \cdot
-h^{\delta'} 
-\stackrel{?}{=} 
-(\hat{A})^{e^2} \cdot 
-\left(
-    \prod_{j=1}^{\text{log}_2(nm)} L_j^{e^2 \cdot x_j^2} \cdot R_j^{e^2 \cdot x_j^{-2}}
-\right) \cdot
-(A')^{e} \cdot B 
-$$
-
-By substituting $\hat{A}$, the verification boils downs to a single multi-exponentiation check.
-
-$$
-\textbf{g}^{e \cdot r' \cdot \textbf{s}} \cdot 
-\textbf{h}^{e \cdot s' \cdot \textbf{s}'} \cdot 
-g^{r' \odot s'} \cdot
-h^{\delta'} 
-\stackrel{?}{=} 
-\left(
-    A \cdot
-    \textbf{g}^{-z \cdot \textbf{1}^{mn}} \cdot 
-    \textbf{h}^{z \cdot \textbf{1}^{mn} + \textbf{d} \circ \overleftarrow{y}^{mn}} \cdot
-    \textbf{V}^{y^{mn+1} \cdot z^2 \cdot \textbf{z}^m} \cdot g^{\zeta(y,z)} 
-\right)^{e^2} \cdot 
-\\
-\left(
-    \prod_{j=1}^{\text{log}_2(nm)} L_j^{e^2 \cdot x_j^2} \cdot R_j^{e^2 \cdot x_j^{-2}}
-\right) \cdot
-(A')^{e} \cdot B 
-$$
-
-$$
-\implies 
-\textbf{g}^{e \cdot r' \cdot \textbf{s} + ze^2 \textbf{1}^{mn}} \cdot 
-\textbf{h}^{e \cdot s' \cdot \textbf{s}' - ze^2 \cdot \textbf{1}^{mn} - e^2 \cdot \textbf{d} \circ \overleftarrow{y}^{mn}} \cdot 
-g^{r' \odot s' - e^2\zeta(y,z)} \cdot
-h^{\delta'} \cdot
-A^{-e^2} \cdot
-\\
-\textbf{V}^{-e^2 y^{mn+1} \cdot z^2 \cdot \textbf{z}^m} \cdot 
-\textbf{L}^{\textbf{x}_L} \cdot
-\textbf{R}^{\textbf{x}_R} \cdot
-(A')^{-e} \cdot B^{-1} 
-$$
-
-Note here, we have 
-$$
-\begin{aligned}
-\textbf{x}_L &amp;= e^2 \cdot (-x_1^2, -x_2^2, \dots, -x_{\text{log}_2(nm)}^2) \\
-\textbf{x}_R &amp;= e^2 \cdot (-x_1^{-2}, -x_2^{-2}, \dots, -x_{\text{log}_2(nm)}^{-2}),
-\end{aligned}
-$$
-
-Thus, an aggregated BP+ range proof can be verified by a single multi-exponentiation check of size $2mn + 2\text{log}_2(mn) + m + 5$.
-
-### Comparison of Verification Times
-
-The following plot shows verification times for BP and BP+ for $64$-bit range proofs over $\texttt{secp256k1}$ curve in Rust.
-The code can be found [here](https://github.com/KZen-networks/bulletproofs).
-Note that the verification speed can be further improved using [Pipenger's exponentiation algorithm](https://cr.yp.to/papers/pippenger.pdf) for computing a multi-exponentiation.
-All simulations were performed on an Intel® Core™ i7-5500U CPU running at 2.40GHz.
-
-&lt;!-- 
-|  $m$ 	| BP Verification (ms) 	| BP+ Verification (ms) 	|
-|:--:	|:--------------------:	|:---------------------:	|
-| 1  	|         14.15        	|         14.36         	|
-| 2  	|         27.26        	|         26.91         	|
-| 4  	|         62.81        	|         53.51         	|
-| 8  	|        121.19        	|         109.23        	|
-| 16 	|        279.70        	|         235.26        	|
-| 32 	|        718.34        	|         556.90        	|
---&gt;
-
-&lt;center&gt;
-{% include image.html name=&quot;bp_bp_plus_ver_plot-1.png&quot; caption=&quot;Plot of verification times of $64$-bit BP and BP+ range proofs for different aggregation sizes $m$.&quot; %}
-&lt;/center&gt;
-
-[^1]: The challenge $x_u$ is used to multiply the given inner product $\langle \textbf{a},\textbf{b} \rangle$ in the exponent of a generator $g \in \mathbb{G}$. BP paper uses $u \in \mathbb{G}$ in Protocol 1, 2 instead of $g$. 
-
-{% endkatexmm %}</content><author><name>Personal Webpage</name></author><summary type="html">In this third part on comparing Bulletproofs+ and Bulletproofs, we will delve into the math of aggregate verification of the range proofs. We compare the verification speeds of both of the protocols qualitatively as well as quantitatively. Please read blogs 1, 2 for a primer on Bulletproofs and Bulletproofs+.</summary></entry><entry><title type="html">Understanding Inner Product Argument</title><link href="http://localhost:4000/homepage/project/2020/06/28/inner-product-argument.html" rel="alternate" type="text/html" title="Understanding Inner Product Argument" /><published>2020-06-28T00:00:00+05:30</published><updated>2020-06-28T00:00:00+05:30</updated><id>http://localhost:4000/homepage/project/2020/06/28/inner-product-argument</id><content type="html" xml:base="http://localhost:4000/homepage/project/2020/06/28/inner-product-argument.html">{% katexmm %}
+{% endkatexmm %}</content><author><name>Personal Webpage</name></author><summary type="html">Bulletproofs+ is a recently proposed range proof which is similar in spirit to Bulletproofs. Both of these range proof protocols enable proof sizes logarithmic in the number of bits of the range using a recursive inner product protocol. Bulletproofs relies on the improved inner product protocol 1 while Bulletproofs+ uses a weighted inner product protocol 2. Benedikt Bünz et al, “Bulletproofs: Short Proofs for Confidential Transactions and More”, in Cryptology ePrint Archive, Report 2017/1066, Available at https://eprint.iacr.org/2017/1066.pdf &amp;#8617; Chung H. et al, “Bulletproofs+: Shorter Proofs for Privacy-Enhanced Distributed Ledger”, in Cryptology ePrint Archive, Report 2020/735, Available at https://eprint.iacr.org/2020/735.pdf. &amp;#8617;</summary></entry><entry><title type="html">Understanding Inner Product Argument</title><link href="http://localhost:4000/homepage/project/2020/06/28/inner-product-argument.html" rel="alternate" type="text/html" title="Understanding Inner Product Argument" /><published>2020-06-28T00:00:00+05:30</published><updated>2020-06-28T00:00:00+05:30</updated><id>http://localhost:4000/homepage/project/2020/06/28/inner-product-argument</id><content type="html" xml:base="http://localhost:4000/homepage/project/2020/06/28/inner-product-argument.html">{% katexmm %}
 The [Bulletproofs](https://eprint.iacr.org/2017/1066.pdf) paper introduces a log-sized inner-product argument and thereafter constructs the state-of-the-art range proof protocol in non-trusted setup setting.
 We will discuss the inner-product argument and how it motivated the idea of recursive proof systems like [Halo](https://eprint.iacr.org/2019/1021.pdf).
 We assume basic familiarity of the reader with elliptic curve group operations and Pedersen commitments.
@@ -1013,38 +1016,4 @@ Respect everyone. No matter who the person you're interacting with is, never thi
 {% include image.html name=&quot;nss2.png&quot; caption=&quot;Me addressing our volunteers in Annual Felicitation Cermony on left, Commended by the Dean of Student Affairs for contribution to NSS, IITB on right&quot; %}
 &lt;/center&gt;
 
-I am indebted to NSS for developing in a person I am today. It has been instrumental in building my confidence to speak in front of a large crowd. It has helped me understand that in spite of the 'progress' we are doing as a nation, there is still a lot to be done for a majority of our population. We cannot be *developed* until each one of us has access to proper education, healthcare, food and clean water. As the future of our nation, we must step forward to make a difference using technology or otherwise. I am grateful to NSS for instilling this feeling in me.</content><author><name>Suyash Bagad</name></author><summary type="html">Describing my association with NSS might get too lengthy for it has been a long, adventurous and a beautiful journey. I started volunteering with NSS from my freshman year. I still remember every interaction with the enthusiastic kids whom I taught Science and Math back then. From the second year onwards, I was in the Media and Design team of NSS. Along with volunteering, I also got to learn things like managing time and academics. The satisfaction of my work in NSS kept me motivated to remain associated with the people in NSS. I continued as a Department Head in third year and Overall Coordinator (OC) in fourth.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/homepage/nss3.png" /></entry><entry><title type="html">The Sowing of the Seeds of Service</title><link href="http://localhost:4000/homepage/blog/2019/03/24/volunteering-experience.html" rel="alternate" type="text/html" title="The Sowing of the Seeds of Service" /><published>2019-03-24T00:00:00+05:30</published><updated>2019-03-24T00:00:00+05:30</updated><id>http://localhost:4000/homepage/blog/2019/03/24/volunteering-experience</id><content type="html" xml:base="http://localhost:4000/homepage/blog/2019/03/24/volunteering-experience.html">&gt; If you positively change even a single person's life, your life would be fruitful in real sense.
-
-This line by Mr. Rohit Chauhan, my physics and chemistry teacher in high-school, struck me real deep.
-He says, many of our fellow friends often fall down or are born fallen while running in this race of life, 
-and it's the responsibility of the standing ones to give a hand to them. This sowed in me the seed of doing 
-whatever I can for our the less privileged ones.
-
-In my freshman year, I started volunteering at an NGO to teach school kids basic math and science. 
-The zeal in those innocent eyes never made me realise how time went by teaching them. Inspite of being a 
-little unfortunate, these kids never cribbed about even a single thing. They made me realise how privileged my life has been. 
-That's when I decided that I wish to continue helping them in some form or other. 
-
-While volunteering, one day I met Shivam, a feeble but enthusiastic kid studying in class 11. 
-He knew I was from IIT and had come to meet me. He asked me for help in his preparation for JEE exams. 
-I didn't hesitate to extend my help in whatever I could do for him. I called him regularly in the 
-Central Library at IIT and started teaching him physics and math. 
-I came to know about his family, his mother working in the NGO I volunteered and his father working as a labourer in Delhi. 
-Little could his background stop him from dreaming big. He desperately wanted to get himself and his mother out 
-of the miserable life they had been living. His dedication kept motivating me to help in whatever way I can.
-He eventually did not make it to IITs but his hardwork helped him to land up in a respectable college in Mumbai. 
-I still keep in touch with him and it feels great when I hear him doing well in college. 
-
-All these incidents from freshman year drove me to the next stop, NSS. National Service Scheme (NSS) is a program by the Government of India
-aimed at sensitising the youth about our society. I saw NSS, IIT Bombay as an opportunity to continue to contribute
-to the society in different ways. Starting off as an Activity Associate, I continued working hard for my motive, 
-managing studies as well as NSS. In our third year, being in the core team of NSS, we ran a campaign to eradicate
-the taboo about menstruation. We managed to reach almost a million people through social media with our initiatives, 
-so that common people could do what NSS was doing, albeit on a small scale, helping our society grow together a bit by bit. 
-In my 4th year, I was appointed as the Overall Coordinator of NSS. This gave me the freedom to implement a plethora of ideas. 
-With a view of making technology available to the rural areas, we reached out to more than 50 farmers explaining them the benefits 
-of Smart-Farming. We initiated Zero-waste week in the institute to curb the ever-growing plastic, food and paper wastage. 
-Initiative by initiative, small step by step, we did whatever we could to make this world a better place for all of us. 
-
-Looking back, I feel I was not only honoured but rather very fortunate to have been associated with NSS
-which provides such a wonderful stage to work with like-minded people for the society.</content><author><name>Personal Webpage</name></author><summary type="html">If you positively change even a single person’s life, your life would be fruitful in real sense.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/homepage/ngo.jpg" /></entry></feed>
+I am indebted to NSS for developing in a person I am today. It has been instrumental in building my confidence to speak in front of a large crowd. It has helped me understand that in spite of the 'progress' we are doing as a nation, there is still a lot to be done for a majority of our population. We cannot be *developed* until each one of us has access to proper education, healthcare, food and clean water. As the future of our nation, we must step forward to make a difference using technology or otherwise. I am grateful to NSS for instilling this feeling in me.</content><author><name>Suyash Bagad</name></author><summary type="html">Describing my association with NSS might get too lengthy for it has been a long, adventurous and a beautiful journey. I started volunteering with NSS from my freshman year. I still remember every interaction with the enthusiastic kids whom I taught Science and Math back then. From the second year onwards, I was in the Media and Design team of NSS. Along with volunteering, I also got to learn things like managing time and academics. The satisfaction of my work in NSS kept me motivated to remain associated with the people in NSS. I continued as a Department Head in third year and Overall Coordinator (OC) in fourth.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/homepage/nss3.png" /></entry></feed>

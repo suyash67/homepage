@@ -3,21 +3,20 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Dynamic Boltzmann Machines | Suyash Bagad</title>
+<title>Monero Bulletproofs+ Security Audit | Suyash Bagad</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Dynamic Boltzmann Machines" />
+<meta property="og:title" content="Monero Bulletproofs+ Security Audit" />
 <meta name="author" content="Personal Webpage" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Dynamic Boltzmann Machine (DyBM) was proposed by Osogami at al. in 2015 when their team at IBM, Tokyo showed how a network of just 7 neurons could memorize a sequence of letters of alphabet1. Inspired from this work, we set out to explore DyBM and realize its usefulness in boosting performance in time-series prediction related tasks. Seven neurons memorizing sequences of alphabetical images via spike-timing dependent plasticity &#8617;" />
-<meta property="og:description" content="Dynamic Boltzmann Machine (DyBM) was proposed by Osogami at al. in 2015 when their team at IBM, Tokyo showed how a network of just 7 neurons could memorize a sequence of letters of alphabet1. Inspired from this work, we set out to explore DyBM and realize its usefulness in boosting performance in time-series prediction related tasks. Seven neurons memorizing sequences of alphabetical images via spike-timing dependent plasticity &#8617;" />
-<link rel="canonical" href="http://localhost:4000/homepage/project/2019/05/01/dybm.html" />
-<meta property="og:url" content="http://localhost:4000/homepage/project/2019/05/01/dybm.html" />
+<meta name="description" content="We are in the last stage of completion of the Bulletproofs+ security audit for Monero. We are releasing version 1.0 today and expect to release the final version by February 17, 2020. Here’s the first version of the audit report: Monero Bulletproofs+ Security Audit - v1.0" />
+<meta property="og:description" content="We are in the last stage of completion of the Bulletproofs+ security audit for Monero. We are releasing version 1.0 today and expect to release the final version by February 17, 2020. Here’s the first version of the audit report: Monero Bulletproofs+ Security Audit - v1.0" />
+<link rel="canonical" href="http://localhost:4000/homepage/project/2021/02/10/bp-plus-audit.html" />
+<meta property="og:url" content="http://localhost:4000/homepage/project/2021/02/10/bp-plus-audit.html" />
 <meta property="og:site_name" content="Suyash Bagad" />
-<meta property="og:image" content="http://localhost:4000/homepage/dybm_cover.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-05-01T00:00:00+05:30" />
+<meta property="article:published_time" content="2021-02-10T00:00:00+05:30" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/homepage/project/2019/05/01/dybm.html","headline":"Dynamic Boltzmann Machines","dateModified":"2019-05-01T00:00:00+05:30","datePublished":"2019-05-01T00:00:00+05:30","author":{"@type":"Person","name":"Personal Webpage"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/homepage/project/2019/05/01/dybm.html"},"image":"http://localhost:4000/homepage/dybm_cover.png","description":"Dynamic Boltzmann Machine (DyBM) was proposed by Osogami at al. in 2015 when their team at IBM, Tokyo showed how a network of just 7 neurons could memorize a sequence of letters of alphabet1. Inspired from this work, we set out to explore DyBM and realize its usefulness in boosting performance in time-series prediction related tasks. Seven neurons memorizing sequences of alphabetical images via spike-timing dependent plasticity &#8617;","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"url":"http://localhost:4000/homepage/project/2021/02/10/bp-plus-audit.html","headline":"Monero Bulletproofs+ Security Audit","dateModified":"2021-02-10T00:00:00+05:30","datePublished":"2021-02-10T00:00:00+05:30","author":{"@type":"Person","name":"Personal Webpage"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/homepage/project/2021/02/10/bp-plus-audit.html"},"description":"We are in the last stage of completion of the Bulletproofs+ security audit for Monero. We are releasing version 1.0 today and expect to release the final version by February 17, 2020. Here’s the first version of the audit report: Monero Bulletproofs+ Security Audit - v1.0","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/homepage/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/homepage/feed.xml" title="Suyash Bagad" /><link rel="apple-touch-icon" sizes="180x180" href="/homepage/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/homepage/favicon-32x32.png">
@@ -102,70 +101,21 @@
         <article class="project h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="project-header">
-    <h1 class="project-title p-name" itemprop="name headline">Dynamic Boltzmann Machines</h1>
+    <h1 class="project-title p-name" itemprop="name headline">Monero Bulletproofs+ Security Audit</h1>
     <p class="project-meta">
-      <time class="dt-published" datetime="2019-05-01T00:00:00+05:30" itemprop="datePublished">May 1, 2019
+      <time class="dt-published" datetime="2021-02-10T00:00:00+05:30" itemprop="datePublished">Feb 10, 2021
       </time></p>
   </header>
 
-  <div class="project-image" itemprop="projImage"><!--  -->
-
-
-    <figure>
-        <img src="/homepage/assets/images/Dynamic Boltzmann Machines/dybm_cover.png"  />
-        <figcaption></figcaption>
-    </figure>
-
-      </div>
+  <div class="project-image" itemprop="projImage"></div>
 
   <div class="project-content e-content" itemprop="articleBody">
-    <p>Dynamic Boltzmann Machine (DyBM) was proposed by <em>Osogami at al.</em> in 2015 when their team at <a href="https://www.ibm.com/blogs/research/category/ibmres-tokyo/">IBM, Tokyo</a> showed how a network of just 7 neurons could memorize a sequence of letters of alphabet<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>. Inspired from this work, we set out to explore DyBM and realize its usefulness in boosting performance in time-series prediction related tasks.</p>
+    <p>We are in the last stage of completion of the Bulletproofs+ security audit for Monero. We are releasing version 1.0 today and expect to release the final version by February 17, 2020.
+Here’s the first version of the audit report: <a href="/homepage/assets/pdfs/bulletproofs_plus_audit_report_v1.0.pdf"> Monero Bulletproofs+ Security Audit - v1.0</a></p>
 
-<p>The Dynamic Boltzmann machine beautifully incorporates the notion of time in the existing
-framework of Boltzmann machines. It consists of infinite layers of neurons unfolded in time.
-There are no neuronal connections in space, the only connections between neurons are in time.</p>
+<p>This is joint work with <a href="https://www.omershlomovits.com/">Omer Shlomovits</a> and Prof. <a href="https://cs.au.dk/~orlandi/">Claudio Orlandi</a> of <a href="https://zengo.com/research/">ZenGo X</a>.</p>
 
-<center>
-<!--  -->
-
-
-    <figure>
-        <img src="/homepage/assets/images/Dynamic Boltzmann Machines/dybm_var.png" />
-        <figcaption>The basic structures of the variants of the Boltzmann machines</figcaption>
-    </figure>
-
-</center>
-
-<p>DyBM is essentially an energy-minimization model. The most interesting aspect of DyBM is its interpretation in terms of biological neuronal networks. A DyBM consists of a network of neurons and memory units. Between two neurons, we have two separate uni-directional FIFO queues storing the past states of the pre-synaptic neuron. Also, each neuron has the memory unit for storing <em>neural eligibility traces</em>, which summarize the neurons activities in the past. A <em>synaptic eligibility trace</em> is associated with a synapse between a pre-synaptic neuron and a post-synaptic neuron, and summarizes the spikes that have arrived at the synapse, via the FIFO queue, from the pre-synaptic neuron.</p>
-
-<p>Realization of DyBM is hardware is a promising direction for research attributed to the advent of SNN-based chips like <a href="https://www.intel.in/content/www/in/en/research/neuromorphic-computing.html">Intel’s Loihi</a> <sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>  and <a href="https://www.ibm.com/blogs/research/tag/truenorth/">IBM’s Truenorth</a>. We were able to come up with an initial framework for hardware realisation of DyBM.</p>
-
-<p>To validate the results of DyBM on a real life time-series, we used RNN Gaussian DyBM to predict a
-variable in different tasks. We use LSTM networks as a benchmark to compare the results of DyBM since LSTMs have recently emerged as the state-of-the-art model for time-series prediction. We observe that the DyBM model <em>occasionally outperforms</em> the results of LSTM. We compare the results using RMSE as a metric.</p>
-
-<center>
-<!--  -->
-
-
-    <figure>
-        <img src="/homepage/assets/images/Dynamic Boltzmann Machines/dybm_comparison.png" />
-        <figcaption>Single dimensional time-series prediction of exchange rate of AUD wrt USD.</figcaption>
-    </figure>
-
-</center>
-
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1" role="doc-endnote">
-      <p><a href="https://www.nature.com/articles/srep14149">Seven neurons memorizing sequences of alphabetical images via spike-timing dependent plasticity</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:2" role="doc-endnote">
-      <p><a href="https://ieeexplore.ieee.org/document/8259423">Loihi: A Neuromorphic Manycore Processor with On-Chip Learning</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
-
-  </div><a class="u-url" href="/homepage/project/2019/05/01/dybm.html" hidden></a>
+  </div><a class="u-url" href="/homepage/project/2021/02/10/bp-plus-audit.html" hidden></a>
 </article>
 
       </div>
